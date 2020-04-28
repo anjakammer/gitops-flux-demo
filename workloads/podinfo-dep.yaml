@@ -48,6 +48,7 @@ spec:
           protocol: TCP
         command:
         - ./podinfo
+        - --ui-message='Welcome to Flux'
         - --port=9898
         - --port-metrics=9797
         - --grpc-port=9999
