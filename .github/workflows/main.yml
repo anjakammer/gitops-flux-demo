@@ -13,10 +13,13 @@ jobs:
     steps:
       - name: Kubeval - Kubernetes yaml validation
         uses: makocchi-git/actions-k8s-manifests-validate@v1.0.0
+        if: ${{ always() }}
         with:
           files: namespaces
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Kubeval - Kubernetes toolset
         uses: stefanprodan/kube-tools@v1.4.0
+        if: ${{ always() }}
         with:
           command: |
             echo "Run kubeval"
