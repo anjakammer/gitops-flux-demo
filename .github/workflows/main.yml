@@ -16,7 +16,10 @@ jobs:
         with:
           command: |
             echo "Run kubeval"
-            kubeval -d namespaces,workloads --ignore-missing-schemas
-            echo "Run conftest"
-            conftest test
+            kubeval -d namespaces, workloads --strict --ignore-missing-schemas 
+      - name: Kubernetes yaml validation
+        uses: makocchi-git/actions-k8s-manifests-validate@v1.0.0
+        with:
+          files: namespace, workloads
+
 
