@@ -11,15 +11,15 @@ jobs:
   test:
     runs-on: ubuntu-18.04
     steps:
-      - name: Kubernetes toolset
+      - name: Kubeval - Kubernetes yaml validation
+        uses: makocchi-git/actions-k8s-manifests-validate@v1.0.0
+        with:
+          files: namespace,workloads
+      - name: Kubeval - Kubernetes toolset
         uses: stefanprodan/kube-tools@v1.4.0
         with:
           command: |
             echo "Run kubeval"
-            kubeval -d namespaces, workloads --strict --ignore-missing-schemas 
-      - name: Kubernetes yaml validation
-        uses: makocchi-git/actions-k8s-manifests-validate@v1.0.0
-        with:
-          files: namespace, workloads
+            kubeval -d namespaces,workloads --strict --ignore-missing-schemas :  
 
 
