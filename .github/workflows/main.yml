@@ -16,12 +16,13 @@ jobs:
         if: ${{ always() }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          files: workloads
       - name: Kubeval - Kubernetes toolset
         uses: stefanprodan/kube-tools@v1.4.0
         if: ${{ always() }}
         with:
           command: |
             echo "Run kubeval"
-            kubeval -d namespaces,workloads --strict --ignore-missing-schemas  
+            kubeval -d namespaces --strict
 
 
