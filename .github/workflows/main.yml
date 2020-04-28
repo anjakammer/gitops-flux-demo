@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  test:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Kubernetes toolset
+        uses: stefanprodan/kube-tools@v1.4.0
+        with:
+          command: |
+            echo "Run kubeval"
+            kubeval -d namespaces,workloads --ignore-missing-schemas
+            echo "Run conftest"
+            conftest test
+
